@@ -1,0 +1,11 @@
+{
+  "name": "twitbot",
+  "version": "0.1.0",
+  "description": "Automated tweet extractor",
+  "author": {
+  	"name": "Vinícius Borriello",
+  	"email": "viniciusbo@gmail.com"
+  },
+  "license": "BSD",
+  "main": "./lib/twitbot"
+}
