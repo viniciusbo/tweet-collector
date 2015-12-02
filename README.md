@@ -1,9 +1,44 @@
-# TwitBot - Simple auto tweet collector
+# TwitBot
 
-A simple tweet collector. It make requests to the Twitter API and store in a repository.
+Simple periodic tweet collector
 
-## TODO
+```javascript
+var TwitBot = require('twitbot');
+var twitbot = TwitBot(twitterCredentials, {
+  batchSize: 100,
+  interval: 10, // seconds
+});
 
-. Logger class
-. Callback on TwitBot.searchTweets
-. Callback on TwitBot.storeTweets
+twitbot.start();
+twitbot.on('', function(tweetsArray) {
+  console.log(tweetsArray);
+});
+```
+
+## API
+
+### `TwitBot(twitterCredentials, settings)`
+
+Instantiate a TwitBot.
+
+Example: 
+
+```javascript
+var twitbot = new TwitBot(twitterCredentials, settings);
+```
+
+### `twitbot.start()`
+
+Start tweet collector.
+
+### `twitbot.stop()`
+
+Stop tweet collector.
+
+### `twitbot.on('fetch', onTweetFetch)`
+
+```javascript
+twitbot.on('fetch', function onTweetFetch(tweetsArray) {
+  console.log(tweetsArray);
+});
+```
