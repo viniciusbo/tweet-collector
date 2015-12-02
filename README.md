@@ -8,7 +8,7 @@ npm install --save twitcollector
 
 ```javascript
 var TweetCollector = require('tweet-collector');
-var tweetCollector = TweetCollector(twitterCredentials, {
+var tweetCollector = new TweetCollector(twitterCredentials, {
   batchSize: 100,
   interval: 10, // seconds
 });
