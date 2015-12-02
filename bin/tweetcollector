@@ -5,7 +5,7 @@
  */
 
 var program = require('commander');
-var TwitBot = require('../lib/twitbot');
+var TweetCollector = require('../lib/tweetCollector');
 var jf = require('jsonfile');
 
 program
@@ -32,12 +32,12 @@ jf.readFile(process.cwd() + '/' + program.twittercfg, function(err, twitterConfi
 	if (program.interval && program.interval > 0)
 		settings.interval = program.interval;
 
-	var bot = new TwitBot(twitterConfig, settings);
-	bot.start({
+	var tweetCollector = new TweetCollector(twitterConfig, settings);
+	tweetCollector.start({
 		q: program.keywords
 	});
 
-	bot.on('fetch', function onFetch(tweets) {
+	tweetCollector.on('fetch', function onFetch(tweets) {
 		process.stdout.write(JSON.stringify(tweets));
 	});
 });
