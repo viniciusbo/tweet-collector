@@ -37,7 +37,7 @@ jf.readFile(process.cwd() + '/' + program.twittercfg, function(err, twitterConfi
 		q: program.keywords
 	});
 
-	bot.on('fetch', function(tweets) {
-		process.stdout.write(tweets);
+	bot.on('fetch', function onFetch(tweets) {
+		process.stdout.write(JSON.stringify(tweets));
 	});
 });

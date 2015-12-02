@@ -1,6 +1,6 @@
 {
   "name": "twitbot",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Simple periodic tweet collector",
   "author": {
     "name": "Vinícius Borriello",
@@ -9,7 +9,7 @@
   "license": "BSD",
   "main": "./lib/twitbot",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "dependencies": {
     "commander": "^2.9.0",
