@@ -10,10 +10,8 @@ var jf = require('jsonfile');
 
 program
 	.option('-t --twittercfg <path>', 'twitter credetinals configuration file')
-	.option('-r --repo <string>', 'which repository to open')
-	.option('-c --repocfg <path>', 'repository configuration file')
 	.option('-k --keywords "<string>"', 'comma separated keywords to search')
-	.option('-b --batch <number>', 'twitter search batch size')
+	.option('-b --batchSize <number>', 'twitter search batch size')
 	.option('-i --interval <number>', 'twitter search interval window in seconds')
 	.parse(process.argv);
 
@@ -21,35 +19,25 @@ program
 if (!program.twittercfg)
 	throw new Error('Twitter credentials configuration file not set.');
 
-if (!program.repo)
-	throw new Error('Repository not set.');
-
-if (!program.repocfg)
-	throw new Error('Repository configuration file not set.');
-
 if (!program.keywords)
 	throw new Error('No keywords set.');
 
-jf.readFile(program.twittercfg, function(err, twitterConfig){
-	if (err) throw new Error('Could no\'t open twitter credentials file.');
+jf.readFile(process.cwd() + '/' + program.twittercfg, function(err, twitterConfig){
+	if (err) throw new Error('Could not open twitter credentials file.');
 
-	// Instantiate twitbot
-	var bot = new TwitBot(twitterConfig);
+	var settings = {};
+	if (program.batchSize && program.batchSize > 0)
+		settings.batchSize = program.batchSize;
 
-	jf.readFile(program.repocfg, function(err, repoConfig) {
-		if (err) throw new Error('Could no\'t open repository configuration file.');
+	if (program.interval && program.interval > 0)
+		settings.interval = program.interval;
 
-		if (program.batch && program.batch > 0)
-			bot.setBatchSize(program.batch);
+	var bot = new TwitBot(twitterConfig, settings);
+	bot.start({
+		q: program.keywords
+	});
 
-		if (program.interval && program.interval > 0)
-			bot.setSearchInterval(program.interval);
-
-		// Open repository
-		bot.setRepository(program.repo, repoConfig);
-
-		bot.start({
-			q: program.keywords
-		});
-	})
+	bot.on('fetch', function onFetch(tweets) {
+		process.stdout.write(JSON.stringify(tweets));
+	});
 });
