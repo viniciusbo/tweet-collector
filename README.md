@@ -3,7 +3,7 @@
 Simple periodic tweet collector.
 
 ```bash
-npm install --save twitcollector
+npm install --save tweet-collector
 ```
 
 ```javascript
@@ -31,9 +31,13 @@ Example:
 var tweetCollector = new TweetCollector(twitterCredentials, settings);
 ```
 
-### `tweetCollector.start()`
+### `tweetCollector.start(searchParams)`
 
 Start tweet collector.
+
+**searchParams**
+
+See [Twitter API Docs](https://dev.twitter.com/rest/reference/get/search/tweets).
 
 ### `tweetCollector.stop()`
 
