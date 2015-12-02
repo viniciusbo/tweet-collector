@@ -1,44 +1,48 @@
-# TwitBot
+# Tweet Collector
 
-Simple periodic tweet collector
+Simple periodic tweet collector.
+
+```bash
+npm install --save twitcollector
+```
 
 ```javascript
-var TwitBot = require('twitbot');
-var twitbot = TwitBot(twitterCredentials, {
+var TweetCollector = require('tweet-collector');
+var tweetCollector = TweetCollector(twitterCredentials, {
   batchSize: 100,
   interval: 10, // seconds
 });
 
-twitbot.start();
-twitbot.on('', function(tweetsArray) {
+tweetCollector.start();
+tweetCollector.on('fetch', function(tweetsArray) {
   console.log(tweetsArray);
 });
 ```
 
 ## API
 
-### `TwitBot(twitterCredentials, settings)`
+### `TweetCollector(twitterCredentials, settings)`
 
-Instantiate a TwitBot.
+Instantiate a TweetCollector.
 
 Example: 
 
 ```javascript
-var twitbot = new TwitBot(twitterCredentials, settings);
+var tweetCollector = new TweetCollector(twitterCredentials, settings);
 ```
 
-### `twitbot.start()`
+### `tweetCollector.start()`
 
 Start tweet collector.
 
-### `twitbot.stop()`
+### `tweetCollector.stop()`
 
 Stop tweet collector.
 
-### `twitbot.on('fetch', onTweetFetch)`
+### `tweetCollector.on('fetch', onTweetFetch)`
 
 ```javascript
-twitbot.on('fetch', function onTweetFetch(tweetsArray) {
+tweetCollector.on('fetch', function onTweetFetch(tweetsArray) {
   console.log(tweetsArray);
 });
 ```

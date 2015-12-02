@@ -1,22 +1,22 @@
 var expect = require('chai').expect;
-var TwitBot = require('../lib/twitbot');
+var TweetCollector = require('../lib/tweetCollector');
 var twitterCredentials = require('../config/twitter');
 
-describe('TwitBot', function() {
-  var twitbot;
+describe('TweetCollector', function() {
+  var tweetCollector;
 
   before(function(done) {
-  	twitbot = new TwitBot(twitterCredentials);
+  	tweetCollector = new TweetCollector(twitterCredentials);
     done();
   });
 
   it('should periodically fetch tweets', function(done) {
-    twitbot.start({
+    tweetCollector.start({
       q: 'test'
     });
-    twitbot.on('fetch', function(tweets) {
+    tweetCollector.on('fetch', function(tweets) {
       expect(tweets).to.be.array;
-      twitbot.stop();
+      tweetCollector.stop();
       done();
     });
 	});
