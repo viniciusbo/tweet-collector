@@ -1,6 +1,6 @@
 {
   "name": "tweet-collector",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple periodic tweet collector",
   "author": {
     "name": "Vinícius Borriello",
