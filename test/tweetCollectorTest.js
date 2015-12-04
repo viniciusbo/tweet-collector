@@ -6,18 +6,28 @@ describe('TweetCollector', function() {
   var tweetCollector;
 
   before(function(done) {
-  	tweetCollector = new TweetCollector(twitterCredentials);
+  	tweetCollector = new TweetCollector(twitterCredentials, {
+      search_params: {
+        q: 'test'
+      }
+    });
     done();
   });
 
-  it('should periodically fetch tweets', function(done) {
-    tweetCollector.start({
-      q: 'test'
-    });
+  it('should start', function(done) {
+    tweetCollector.start();
+    done();
+  });
+
+  it('should fetch something', function(done) {
     tweetCollector.on('fetch', function(tweets) {
       expect(tweets).to.be.array;
-      tweetCollector.stop();
       done();
     });
-	});
+  })
+
+  after(function(done) {
+    tweetCollector.stop();
+    done();
+  })
 });
