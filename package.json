@@ -1,6 +1,6 @@
 {
   "name": "tweet-collector",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "Simple periodic tweet collector",
   "author": {
     "name": "Vinícius Borriello",
@@ -13,7 +13,7 @@
     "url": "git@github.com:viniciusbo/tweet-collector.git"
   },
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha --recursive --timeout 5000"
   },
   "dependencies": {
     "commander": "^2.9.0",
