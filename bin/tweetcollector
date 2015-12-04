@@ -11,7 +11,7 @@ var jf = require('jsonfile');
 program
 	.option('-t --twittercfg <path>', 'twitter credetinals configuration file')
 	.option('-k --keywords "<string>"', 'comma separated keywords to search')
-	.option('-b --batchSize <number>', 'twitter search batch size')
+	.option('-b --batch-size <number>', 'twitter search batch size')
 	.option('-i --interval <number>', 'twitter search interval window in seconds')
 	.parse(process.argv);
 
@@ -26,17 +26,16 @@ jf.readFile(process.cwd() + '/' + program.twittercfg, function(err, twitterConfi
 	if (err) throw new Error('Could not open twitter credentials file.');
 
 	var settings = {};
-	if (program.batchSize && program.batchSize > 0)
-		settings.batchSize = program.batchSize;
+	settings.search_params.q = program.keywords;
+
+	if (program.batch_size && program.batch_size > 0)
+		settings.batch_size = program.batch_size;
 
 	if (program.interval && program.interval > 0)
 		settings.interval = program.interval;
 
 	var tweetCollector = new TweetCollector(twitterConfig, settings);
-	tweetCollector.start({
-		q: program.keywords
-	});
-
+	tweetCollector.start();
 	tweetCollector.on('fetch', function onFetch(tweets) {
 		process.stdout.write(JSON.stringify(tweets));
 	});
