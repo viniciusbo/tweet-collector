@@ -56,8 +56,8 @@ tweetCollector.on('fetch', function onTweetFetch(tweetsArray) {
 ## CLI
 
 ```bash
-npm install -g tweet-collector
-tweet-collector -h
+$ npm install -g tweet-collector
+$ tweet-collector -h
 
   Usage: tweetcollector [options]
 
@@ -68,7 +68,8 @@ tweet-collector -h
     -k --keywords "<string>"  comma separated keywords to search
     -b --batch-size <number>  twitter search batch size
     -i --interval <number>    twitter search interval window in seconds
-tweet-collector -t path/to/cfg.json -k "comma,separated,keywords" -b 50 -i 60
+
+$ tweet-collector -t path/to/cfg.json -k "comma,separated,keywords" -b 50 -i 60
 ```
 
 See `config/twitter.json` for Twitter credentials configuration.
