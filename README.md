@@ -38,12 +38,12 @@ See [Twitter API Docs](https://dev.twitter.com/rest/reference/get/search/tweets)
 
 ### `tweetCollector.start(searchParams)`
 
-Start tweet collector.
+Starts tweet collector instance.
 
 
 ### `tweetCollector.stop()`
 
-Stop tweet collector.
+Stops tweet collector instance.
 
 ### `tweetCollector.on('fetch', onTweetFetch)`
 
@@ -52,3 +52,27 @@ tweetCollector.on('fetch', function onTweetFetch(tweetsArray) {
   console.log(tweetsArray);
 });
 ```
+
+## CLI
+
+```bash
+npm install -g tweet-collector
+tweet-collector -h
+
+  Usage: tweetcollector [options]
+
+  Options:
+
+    -h, --help                output usage information
+    -t --twittercfg <path>    twitter credetinals configuration file
+    -k --keywords "<string>"  comma separated keywords to search
+    -b --batch-size <number>  twitter search batch size
+    -i --interval <number>    twitter search interval window in seconds
+tweet-collector -t path/to/cfg.json -k "comma,separated,keywords" -b 50 -i 60
+```
+
+See `config/twitter.json` for Twitter credentials configuration.
+
+## Handling multiple collector instances
+
+See [tweet-collector-supervisor](https://github.com/viniciusbo/tweet-collector-supervisor) package.

@@ -2,6 +2,7 @@
   "name": "tweet-collector",
   "version": "2.1.1",
   "description": "Simple periodic tweet collector",
+  "bin": "./bin/tweet-collector",
   "author": {
     "name": "Vinícius Borriello",
     "email": "viniciusbo@gmail.com"
