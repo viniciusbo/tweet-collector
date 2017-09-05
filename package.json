@@ -1,6 +1,6 @@
 {
   "name": "tweet-collector",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Simple periodic tweet collector",
   "bin": "./bin/tweet-collector",
   "author": {
